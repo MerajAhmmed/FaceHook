@@ -4,17 +4,20 @@ import LoginPage from "./pages/LoginPage ";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProfiePage from "./pages/ProfilePage";
 import RegistrationPage from "./pages/RegistrationPage";
+import PrivateRoutes from "./routes/PrivateRoutes";
 
 export default function App() {
   return (
     <>
       <Routes>
-        <Route element={<HomePage />} path="/home" />
-        <Route element={<LoginPage />} path="/login" />
-        <Route element={<ProfiePage />} path="/me" />
-        <Route element={<RegistrationPage />} path="/register" />
+        <Route element={<PrivateRoutes />}>
+          <Route element={<HomePage />} path="/" exact />
+          <Route element={<ProfiePage />} path="/me" />
+        </Route>
 
-        <Route element={<NotFoundPage />} path="/*" />
+        <Route element={<LoginPage />} path="/login" />
+        <Route element={<RegistrationPage />} path="/register" />
+        <Route element={<NotFoundPage />} path="*" />
       </Routes>
     </>
   );
